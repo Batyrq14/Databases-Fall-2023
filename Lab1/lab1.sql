@@ -1,8 +1,6 @@
 -- 1. Create database called «lab1»
 CREATE DATABASE lab1;
-
--- 2. Connect to the «lab1» database
-\c lab1;
+--Batyrkhan
 
 -- 3. Create table «users» with the specified fields
 CREATE TABLE users (
