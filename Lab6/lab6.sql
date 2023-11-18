@@ -67,13 +67,13 @@ VALUES
 INSERT INTO employees (first_name, last_name, email, phone_number, salary, department_id)
 VALUES
     ('John', 'Smith', 'john.smith@example.com', '(123) 456-7890', 60000, 20),
-    ('Mary', 'Johnson', 'mary.johnson@example.com', '(234) 567-8901', 70000,null),
-    ('David', 'Williams', 'david.williams@example.com', '(345) 678-9012', 80000, 80),
+    ('Mary', 'Johnson', 'mary.johnson@example.com', '(234) 567-8901', 0,null),
+    ('David', 'Williams', 'david.williams@example.com', null , 80000, 80),
     ('Susan', 'Brown', 'susan.brown@example.com', '(456) 789-0123', 90000, 70),
     ('Michael', 'Davis', 'michael.davis@example.com', '(567) 890-1234', 100000, 90),
-    ('Jennifer', 'Wilson', 'jennifer.wilson@example.com', '(678) 901-2345', 75000, 50),
-    ('Robert', 'Jones', 'robert.jones@example.com', '(789) 012-3456', 85000,null),
-    ('Linda', 'Martinez', 'linda.martinez@example.com', '(890) 123-4567', 72000, 30),
+    ('Jennifer', null , 'jennifer.wilson@example.com', '(678) 901-2345', 75000, 50),
+    ('Robert', 'Jones', 'robert.jones@example.com', '(789) 012-3456', 0,null),
+    ('Linda', 'Martinez', null, '(890) 123-4567', 72000, 30),
     ('William', 'Clark', 'william.clark@example.com', '(901) 234-5678', 95000, 60),
     ('Karen', 'Harris', 'karen.harris@example.com', '(012) 345-6789', 78000, 10);
 
@@ -114,3 +114,31 @@ left join departments d on e.department_id = d.department_id;
 -- drop table employees cascade
 -- drop table locations cascade
 -- drop table departments cascade
+
+select * from employees;
+select * from departments;
+select * from locations;
+
+select d.department_id , d.department_name
+from departments d
+left join employees e on d.department_id = e.department_id
+where e.salary = 0;
+
+select d.department_name
+from  departments d
+left join employees e on d.department_id = e.department_id
+where e.department_id is null;
+
+
+select d.department_name
+from  departments d
+right join employees e on d.department_id = e.department_id
+where e.department_id is null;
+
+delete from employees
+       where department_id is null;
+
+select * from departments
+where department_id not in(select d.department_id
+                           from departments d
+                               right join employees e on e.department_id= d.department_id);

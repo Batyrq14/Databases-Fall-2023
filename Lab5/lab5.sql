@@ -97,3 +97,21 @@ where cust_name is not null;
 --maximum grade of all the customers
 select max(grade) as grade_max from customers;
 
+create table Person(
+    id integer,
+    email varchar(250)
+);
+
+insert into Person
+values (1,'a@b.com'),
+       (2,'c@b.com'),
+       (3,'a@b.com');
+
+select * from Person;
+
+select email as Email
+from Person
+group by email
+having count(email) > 1;
+
+select id
