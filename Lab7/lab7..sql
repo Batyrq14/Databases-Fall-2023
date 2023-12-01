@@ -133,3 +133,17 @@ having (count(s.client_id) >= 1 or s.amount > 2000 and c.priority is not null) o
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
